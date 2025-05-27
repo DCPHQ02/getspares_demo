@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetSpares - Premium Auto Parts Supplier</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary: #5572f6;
+            --secondary: #e74c3c;
+            --accent: #5572f6;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --gray: #6c757d;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background-color: #3a5bd9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3, h4 {
+            color: var(--dark);
+            line-height: 1.2;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        .logo-img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links > li {
+            list-style: none;
+            position: relative;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            padding: 10px 0;
+            transition: color 0.3s ease;
+            color: var(--dark);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+         .nav-links .active {
+            color: red;
+        } 
+        
+        .dropdown {
+            position: relative;
+        }
+        
+        .dropdown-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--white);
+            min-width: 180px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+        
+        .dropdown:hover .dropdown-content {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(5px);
+        }
+        
+        .dropdown-content li {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            list-style: none;
+        }
+        
+        .dropdown-content li:last-child {
+            border-bottom: none;
+        }
+        
+        .dropdown-content a {
+            display: block;
+            font-weight: 500;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: url('/assets/images/getspares.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 0;
+            color: white;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .hero h1 span {
+            color: var(--primary);
+        }
+        
+        .hero p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+        }
+        
+        /* Services Section */
+        .services {
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(85, 114, 246, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+        
+        .service-icon i {
+            font-size: 36px;
+            color: var(--primary);
+        }
+        
+        .service-card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: var(--gray);
+        }
+        
+        /* About Section */
+        /*.about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }*/
+        
+        .about-img {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            color: var(--gray);
+        }
+        
+        .about-features {
+            margin-top: 30px;
+        }
+        
+        .about-feature {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .about-feature i {
+            color: var(--primary);
+            font-size: 20px;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        /* Vehicle Types Section */
+        .vehicle-types {
+            background-color: var(--light);
+        }
+        
+        .types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .type-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .type-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .type-img {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .type-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .type-card:hover .type-img img {
+            transform: scale(1.05);
+        }
+        
+        .type-content {
+            padding: 25px;
+        }
+        
+        .type-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .type-content p {
+            color: var(--gray);
+            margin-bottom: 15px;
+        }
+        
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--primary) 0%, #3a5bd9 100%);
+            color: var(--white);
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: var(--white);
+        }
+        
+        .cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta .btn {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        .cta .btn:hover {
+            background-color: var(--light);
+            color: var(--primary);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--white);
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-column p {
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+        
+        .footer-links li {
+            list-style: none;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-links {
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 40px;
+            }
+            
+            .about {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-img {
+                order: -1;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 30px 0;
+                transition: left 0.3s ease;
+                box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .dropdown-content {
+                position: static;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                padding-left: 20px;
+            }
+            
+            .dropdown-content li {
+                padding: 10px 0;
+                border-bottom: none;
+            }
+            
+            .dropdown:hover .dropdown-content {
+                display: block;
+                transform: none;
+            }
+            
+            .hero {
+                padding: 80px 0;
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .cta h2 {
+                font-size: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta {
+                padding: 80px 0;
+            }
+            
+            .type-content a {
+                display: block;
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="/getspares.html" class="logo">
+                    <!-- <div class="logo-img">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="40" height="40" rx="8" fill="#5572F6"/>
+                            <path d="M20 28C24.4183 28 28 24.4183 28 20C28 15.5817 24.4183 12 20 12C15.5817 12 12 15.5817 12 20C12 24.4183 15.5817 28 20 28Z" fill="#E74C3C"/>
+                            <path d="M20 24C22.2091 24 24 22.2091 24 20C24 17.7909 22.2091 16 20 16C17.7909 16 16 17.7909 16 20C16 22.2091 17.7909 24 20 24Z" fill="white"/>
+                        </svg>
+                    </div>
+                    Get<span>Spares</span> -->
+                    <img src="/assets/images/Get-Spares cropped.png" width="150px" alt="get-spares Logo" class="digital market-logo">
+                </a>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li class="active"><a href="/getspares.html">Home</a></li>
+                    <li><a href="ev.html">EVs</a></li>
+                    <li><a href="hybrid.html">Hybrid</a></li>
+                    <li class="dropdown">
+                        <a href="#">Internal Combustion <i class="fa fa-chevron-down"></i></a>
+                        <ul class="dropdown-content">
+                            <li><a href="petrol.html">Petrol</a></li>
+                            <li><a href="diesel.html">Diesel</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <div class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Premium Auto Parts <span>Solutions</span></h1>
+                <p>GetSpares provides high-quality components for all vehicle types, from traditional combustion engines to the latest electric vehicles.</p>
+                <a href="/contact.html" class="btn">Contact Us</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We offer comprehensive solutions for all your automotive parts needs</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <h3>Parts Supply</h3>
+                    <p>We source and supply high-quality auto parts for all major vehicle manufacturers and models.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa fa-search"></i>
+                    </div>
+                    <h3>Parts Identification</h3>
+                    <p>Our experts help identify the exact parts you need for your specific vehicle requirements.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fa fa-support"></i>
+                    </div>
+                    <h3>Technical Support</h3>
+                    <p>Get professional advice and technical support for all your auto parts questions and needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <div class="about-content">
+                <h2>About GetSpares</h2>
+                <p>We specialize in providing parts for all vehicle types, from traditional internal combustion engines to the latest electric and hybrid vehicles.</p>
+                
+                <div class="about-features">
+                    <div class="about-feature">
+                        <i class="fa fa-check-circle"></i>
+                        <div>
+                            <h4>Quality Assurance</h4>
+                            <p>All parts meet or exceed OEM specifications</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <i class="fa fa-check-circle"></i>
+                        <div>
+                            <h4>Extensive Network</h4>
+                            <p>Access to a global network of suppliers and manufacturers</p>
+                        </div>
+                    </div>
+                    
+                    <div class="about-feature">
+                        <i class="fa fa-check-circle"></i>
+                        <div>
+                            <h4>Expert Team</h4>
+                            <p>Knowledgeable staff with decades of combined experience</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-img">
+                <img src="/assets/images/engine.jpg" alt="Auto parts warehouse">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Vehicle Types Section -->
+    <section class="vehicle-types">
+        <div class="container">
+            <div class="section-title">
+                <h2>Vehicle Types We Support</h2>
+                <p>Comprehensive parts solutions for all modern vehicle technologies</p>
+            </div>
+            
+            <div class="types-grid">
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="/assets/images/ev_car.jpg" alt="Electric Vehicle">
+                    </div>
+                    <div class="type-content">
+                        <h3>Electric Vehicles</h3>
+                        <p>Specialized components for all major EV manufacturers including battery systems, motors, and charging components.</p>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="/assets/images/hybrid.jpg" alt="Hybrid Vehicle">
+                    </div>
+                    <div class="type-content">
+                        <h3>Hybrid Vehicles</h3>
+                        <p>Parts for both the electric and combustion systems in hybrid vehicles from all major brands.</p>
+                    </div>
+                </div>
+                
+                <div class="type-card">
+                    <div class="type-img">
+                        <img src="/assets/images/combustion_chamber.jpg" alt="Combustion Engine">
+                    </div>
+                    <div class="type-content">
+                        <h3>Combustion Engines</h3>
+                        <p>Complete parts solutions for both petrol and diesel engines across all makes and models.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Find Your Parts?</h2>
+            <p>Our team of experts is standing by to help you identify and source the exact parts you need for your vehicle.</p>
+            <a href="/contact.html" class="btn">Get in Touch</a>
+        </div>
+    </section>
+    
+    <!-- Old Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About GetSpares</h3>
+                    <p>GetSpares is a supplier of high-quality auto components for all vehicle types, from traditional combustion engines to the latest electric vehicles.</p>
+                    <!-- <div class="social-links">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-linkedin"></i></a>
+                    </div> -->
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="getspares.html">Home</a></li>
+                        <li><a href="ev.html">EV Parts</a></li>
+                        <li><a href="hybrid.html">Hybrid Parts</a></li>
+                        <li><a href="petrol.html">Petrol Parts</a></li>
+                        <li><a href="diesel.html">Diesel Parts</a></li>
+                        <li><a href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Parts Identification</a></li>
+                        <li><a href="#">Technical Support</a></li>
+                        <li><a href="#">Quality Assurance</a></li>
+                        <li><a href="#">Logistics</a></li>
+                    </ul>
+                </div> -->
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fa fa-map-marker"></i> Plot 2542, Hassan Usman Katsina Street, Asokoro, FCT-Abuja, Nigeria.</p>
+                    <p><i class="fa fa-phone"></i> +234 (0) 908 222 2333</p>
+                    <p><i class="fa fa-envelope"></i> info@getspares.com</p>
+                    <!-- <p><i class="fa fa-clock-o"></i> Mon-Fri: 8AM - 6PM</p> -->
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; <span class="year"></span> GetSpares. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        const year = new Date().getFullYear()
+        document.querySelector(".year").innerHTML = year
+
+         // Set active nav item based on current page
+        function setActiveNavItem() {
+            const currentPath = window.location.pathname;
+            const navItems = document.querySelectorAll('.nav-links li');
+            
+            navItems.forEach(item => {
+                const link = item.querySelector('a');
+                if (link) {
+                    const href = link.getAttribute('href');
+                    link.classList.toggle('active', currentPath.includes(href));
+                }
+            });
+        }
+
+        // Call the function when page loads
+        document.addEventListener('DOMContentLoaded', setActiveNavItem);
+
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fa fa-times"></i>' 
+                : '<i class="fa fa-bars"></i>';
+        });
+        
+        // Dropdown Menu for Internal Combustion
+        const dropdowns = document.querySelectorAll('.dropdown');
+        
+        dropdowns.forEach(dropdown => {
+            const link = dropdown.querySelector('a');
+            
+            link.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const content = dropdown.querySelector('.dropdown-content');
+                    content.style.display = content.style.display === 'block' ? 'none' : 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
