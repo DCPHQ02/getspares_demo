@@ -16,6 +16,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
+        html,
+        body {
+            height: 100%;
+            overflow-y: auto; /* Ensures content is scrollable */
+        }
+        
         body {
             background-color: var(--white);
             color: #333;
@@ -288,7 +294,7 @@
 
 .pt-section {
    background: fixed;
-   background-image: url(/assets/images/petrol-background.jpg);
+   background-image: url(/assets/images/clean\ gears.png);
 }
 
 .ds-section {
@@ -400,7 +406,7 @@ input[type="file"] {
         footer {
             background-color: var(--dark);
             color: var(--white);
-            padding: 60px 0 20px;
+            padding: 40px 0 20px;
         }
         
         .footer-content {
@@ -538,3 +544,396 @@ input[type="file"] {
 .nav-links .active {
     color: red;
 } 
+
+/* Hero Section */
+.contact-hero {
+  position: relative;
+  background: url('/assets/images/contact-hero.jpg') center/cover no-repeat;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.contact-hero-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 1;
+}
+.contact-hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.contact-hero-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.contact-hero-content p {
+  font-size: 1.2rem;
+}
+
+/* Contact Section */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2rem;
+}
+
+.contact-info, .contact-form {
+  flex: 1 1 350px;
+  min-width: 300px;
+}
+.contact-info h2 {
+  margin-bottom: 1rem;
+  color: #1a237e;
+}
+.contact-info p {
+  margin: 0.5rem 0;
+  color: #333;
+  font-size: 1rem;
+}
+.contact-info i {
+  margin-right: 8px;
+  color: #1a237e;
+}
+.contact-info a {
+  color: #1a237e;
+  text-decoration: none;
+}
+.contact-map {
+  margin-top: 1rem;
+}
+.contact-map iframe {
+  width: 100%;
+  height: 200px;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Contact Form */
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.contact-form input,
+.contact-form textarea {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: none;
+}
+.contact-form textarea {
+  min-height: 120px;
+}
+.contact-form button {
+  background: #1a237e;
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.contact-form button:hover {
+  background: #3949ab;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
+/* Contact Page Grid System (replacing Bootstrap) */
+.contact-row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.contact-col {
+    padding: 0 15px;
+    flex: 1 1 50%;
+    min-width: 300px;
+}
+
+.contact-col-left {
+    order: 1;
+}
+
+.contact-col-right {
+    order: 2;
+}
+
+.contact-heading {
+    font-size: 20px;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+/* Responsive behavior for contact columns */
+@media (max-width: 992px) {
+    .contact-col {
+        flex: 1 1 100%;
+        margin-bottom: 30px;
+    }
+    
+    .contact-col-left {
+        order: 1;
+    }
+    
+    .contact-col-right {
+        order: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .contact-row {
+        margin: 0 -10px;
+    }
+    
+    .contact-col {
+        padding: 0 10px;
+        min-width: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-row {
+        margin: 0 -5px;
+    }
+    
+    .contact-col {
+        padding: 0 5px;
+        min-width: 200px;
+    }
+}
+
+/* Contact Page Specific Styles */
+.w3l-contact-info {
+    background-color: var(--light);
+    padding: 80px 0 20px 0;
+}
+
+.w3l-contact-info .title {
+    margin-bottom: 30px;
+}
+
+.w3l-contact-info .title-big {
+    font-size: 32px;
+    color: var(--dark);
+    margin-bottom: 10px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.w3l-contact-info .title-big::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary);
+}
+
+.w3l-contact-info .title p {
+    color: var(--gray);
+    font-size: 16px;
+    line-height: 1.8;
+    margin-top: 10px;
+    padding-left: 5px;
+}
+
+.w3l-contact-info .title p i {
+    color: var(--primary);
+    margin-right: 10px;
+}
+
+.contact-infos {
+    display: grid;
+    gap: 30px;
+}
+
+.single-contact-infos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.single-contact-infos:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.single-contact-infos .icon-box {
+    width: 55px;
+    height: 55px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 24px;
+}
+
+.single-contact-infos .text-box h3 {
+    font-size: 20px;
+    color: var(--dark);
+    margin-bottom: 5px;
+}
+
+.single-contact-infos .text-box p {
+    color: var(--gray);
+    font-size: 17px;
+}
+
+.single-contact-infos .text-box a {
+    color: var(--gray);
+    transition: color 0.3s ease;
+}
+
+.single-contact-infos .text-box a:hover {
+    color: var(--primary);
+}
+
+.map {
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.map iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.form-inner-cont {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 450px;
+    margin-bottom: 0px;
+}
+
+.form-inner-cont .form-input {
+    margin-bottom: 20px;
+}
+
+.form-inner-cont input,
+.form-inner-cont textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid #dcdcdc;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.form-inner-cont input:focus,
+.form-inner-cont textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(85, 114, 246, 0.2);
+    outline: none;
+}
+
+.form-inner-cont textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-inner-cont .btn-style {
+    background-color: var(--primary);
+    color: var(--white);
+    padding: 14px 35px;
+    border: none;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 25px;
+}
+
+.form-inner-cont .btn-style:hover {
+    background-color: #3a5bd9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles for Contact Page */
+@media (max-width: 992px) {
+    .w3l-contact-info {
+        padding: 70px 0;
+    }
+    .w3l-contact-info .title-big {
+        font-size: 28px;
+    }
+    
+    .single-contact-infos {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .w3l-contact-info {
+        padding: 80px 0 20px 0;
+    }
+    
+    .map {
+        height: 300px;
+        margin-bottom: 30px;
+    }
+    
+    .form-inner-cont {
+        padding: 30px;
+        margin-top: 30px;
+        margin-bottom: 0px;
+    }
+}
+
+@media (max-width: 576px) {
+    .w3l-contact-info {
+        padding: 60px 0 20px 0;
+    }
+    .single-contact-infos {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .single-contact-infos .icon-box {
+        margin: 0 auto 15px;
+    }
+    
+    .form-inner-cont {
+        padding: 20px;
+        margin-bottom: 0px;
+    }
+}
