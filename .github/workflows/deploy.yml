@@ -1,0 +1,20 @@
+name: 🚀 Deploy Frontend to Self-Hosted Server
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  deploy:
+    runs-on: [self-hosted, getspares-demo]  
+
+    steps:
+      - name: 🧾 Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: 🔄 Sync files to /e-meca
+        run: |
+          echo "Updating frontend files on server..."
+          sudo rsync -av --delete ./ /e-meca/
+          echo "Deployment completed ✅"
